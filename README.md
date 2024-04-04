@@ -1,5 +1,5 @@
 # IGDataFetcher - Automating Instagram API Authorization and Data Retrieval
-This document provides a guide on how to automate Instagram API authorization and data retrieval using Python. The provided code demonstrates how to obtain an access token, fetch media information, and save it to a JSON file. Additionally, instructions for generating SSL certificates and adding localhost to Valid OAuth Redirect URIs are included.
+This document offers instructions for automating the authorization and data retrieval process of the Instagram API using Python, specifically focusing on the Instagram Basic Display API. The provided code illustrates the steps to acquire an access token, retrieve media information, and store it in a JSON file. Furthermore, it includes guidance on generating SSL certificates and adding localhost to Valid OAuth Redirect URIs.
 
 ## Prerequisites
 Before proceeding, ensure you have:
@@ -8,8 +8,8 @@ Before proceeding, ensure you have:
 - OpenSSL installed for generating SSL certificates.
 - An Instagram Developer account to obtain client ID and client secret.
 
-## Code Explanation
-The provided Python script performs the following tasks:
+## Code Explanation (private IG account)
+The provided Python script <b>`instagramAPI_private`</b> performs the following tasks:
 
 1. Imports necessary libraries and modules.
 2. Defines the Flask application and sets up SSL encryption.
@@ -17,6 +17,20 @@ The provided Python script performs the following tasks:
 4. Handles the callback route to obtain an access token.
 5. Retrieves media information using the access token.
 6. Saves the media information to a JSON file.
+
+## Code Explanation (public IG account)
+To use <b>`instagramAPI_public`</b>, you first need to ensure that your Instagram account is set to public. Then, in the App Dashboard under Instagram Basic Display settings, you can add your account as a tester. Once your account is added and set to public, you can generate a token that will be used in this code.
+
+After obtaining the access token, you can directly run the provided Python script. Here's what the code does:
+
+1. It retrieves media information from the Instagram Basic Display API.
+2. The access token is used to authenticate the requests to the API.
+3. The script fetches media data such as ID, caption, media type, media URL, username, timestamp, permalink, and thumbnail URL.
+4. This information is stored in a dictionary for each media ID.
+5. Finally, the script writes the collected data to a JSON file named media_info.json.
+
+Ensure to replace `{public_user_token}` with your actual access token before running the code. After execution, the media information will be saved to `media_info.json`.
+
 
 ## SSL Certificate Generation
 To generate SSL certificates for local development, follow these steps:
@@ -40,11 +54,14 @@ To add localhost as a Valid OAuth Redirect URI:
 4. Add https://127.0.0.1:5000/callback as a valid redirect URI.
 5. Save the changes.
 
-## Usage
+## Usage instagramAPI_private
 1. Run the Python script after configuring SSL certificates and adding the redirect URI.
 2. Open the provided authorization URL in your browser and authorize the application.
-3. After authorization, the script will retrieve media information and save it to a JSON file named media_info.json.
+3. After authorization, the script will retrieve media information and save it to a JSON file named `media_info.json`.
 
+## Usage instagramAPI_public
+1. After retrieving and replacing the authorization token, execute the Python script.
+2. The script will fetch media information and store it in a JSON file named `media_info.json`.
 <br/><br/>
 
 # How to Use the JSON File in Your App
