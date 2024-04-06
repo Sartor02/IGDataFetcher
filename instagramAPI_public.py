@@ -1,5 +1,6 @@
 import requests
 import json
+import os
 
 if __name__ == '__main__':
     print("Getting media information...")
@@ -21,8 +22,14 @@ if __name__ == '__main__':
         media_info_response = requests.get(get_media_url)
         media_info_dict[media_id] = media_info_response.json()
 
-    # Write the dictionary to the JSON file
-    with open("media_info.json", "w") as json_file:
-        json.dump(media_info_dict, json_file)
+    # Get the absolute path of the current directory
+    current_directory = os.path.dirname(__file__)
 
+    # Build the full path for the JSON file in the current directory
+    json_file_path = os.path.join(current_directory, "media_info.json")
+
+    # Write the dictionary to the JSON file using the full path
+    with open(json_file_path, "w") as json_file:
+        json.dump(media_info_dict, json_file)
+        
     print("Media information saved to media_info.json")
